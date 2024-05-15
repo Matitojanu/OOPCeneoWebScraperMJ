@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+        {% if error is defined %}
+        <div class="alert alert-warning alert-dismissible fade show mt-3 mb-3" role="alert">
+                <strong><i class="bi bi-exclamation-diamond-fill"></i>Warning!</strong> {{error}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+
+        <h2>Extract opinions</h2>
+        <form class="container" method="POST" action="{{url_for('extract')}}">
+           <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                        <label for="product_id" class="col-form-label">Product code</label>
+                </div>
+                <div class="col-auto">
+                        <input type="text" name="product_id" id="product_id" class="form-control" aria-describedby="product_idHelpInline" placeholder="Enter product code" required>
+                </div>  
+                <div class="col-auto">
+                        <span id="product_idHelpInline" class="form-text">Product code must be 5-10 digits long</span>
+                </div>
+                <div class="col-auto">
+                        <button type="submit" class="btn btn-warning">Extract</button>
+                </div>
+            </div>
+        </form>
+{% endblock %}
