@@ -1,4 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-        <p>{{products}}</p>
+        {% for product in products %}
+        <div class="card bg-warning mb-3" style="max-width: 18rem;">
+                <div class="card-header border-warning">{{product.product_name}}</div>
+                <div class="card-body text-success">
+                  <p class="card-text">Stats</p>
+                </div>
+                <div class="card-footer border-warning">Buttons</div>
+        </div>
+        {% endfor %}
 {% endblock %}

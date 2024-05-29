@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
         <p>This is {{product_id}} product file.</p>
-        {{opinions}}
+        <div class="btn-group" role="group" aria-label="Basic example">
+                <a type="button" class="btn btn-warning" href="{{url_for('download_json', product_id=product_id)}}">JSON</a>
+                <a type="button" class="btn btn-warning" href="{{url_for('download_csv', product_id=product_id)}}">CSV</a>
+                <a type="button" class="btn btn-warning" href="{{url_for('download_xlsx', product_id=product_id)}}">XLSX</a>
+        </div>
+        <a type="button" class="btn btn-warning" href="{{url_for('charts', product_id=product_id)}}">Charts</a>
+        {{opinions | safe}}
+{% endblock %}
+{% block scripts %}
+        <script>let table = new DataTable('#opinions', {});</script>
 {% endblock %}
