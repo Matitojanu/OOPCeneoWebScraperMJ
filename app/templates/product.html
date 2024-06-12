@@ -2,9 +2,9 @@
 {% block content %}
         <p>This is {{product_id}} product file.</p>
         <div class="btn-group" role="group" aria-label="Basic example">
-                <a type="button" class="btn btn-warning" href="{{url_for('download_json', product_id=product_id)}}">JSON</a>
-                <a type="button" class="btn btn-warning" href="{{url_for('download_csv', product_id=product_id)}}">CSV</a>
-                <a type="button" class="btn btn-warning" href="{{url_for('download_xlsx', product_id=product_id)}}">XLSX</a>
+                <a type="button" class="btn btn-warning" href="{{url_for('download_json', product_id=product_id)}}" style="color:black;">JSON</a>
+                <a type="button" class="btn btn-warning" href="{{url_for('download_csv', product_id=product_id)}} " style="color:black;">CSV</a>
+                <a type="button" class="btn btn-warning" href="{{url_for('download_xlsx', product_id=product_id)}}" style="color:black;">XLSX</a>
         </div>
         <a type="button" class="btn btn-warning" href="{{url_for('charts', product_id=product_id)}}">Charts</a>
         {{opinions | safe}}

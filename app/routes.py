@@ -97,7 +97,7 @@ def charts(product_id):
 
 @app.route('/download_json/<product_id>')
 def download_json(product_id):
-    return send_file(f"/data/opinions/{product_id}.json", "text/json", as_attachment=True)
+    return send_file(f"./data/opinions/{product_id}.json", "text/json", as_attachment=True)
 
 @app.route('/download_csv/<product_id>')
 def download_csv(product_id):

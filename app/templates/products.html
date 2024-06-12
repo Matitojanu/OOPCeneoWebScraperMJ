@@ -1,12 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
+        <div style="display: flex; flex-wrap: wrap; justify-content: center;">
         {% for product in products %}
-        <div class="card bg-warning mb-3" style="max-width: 18rem;">
-                <div class="card-header border-warning">{{product.product_name}}</div>
-                <div class="card-body text-success">
-                  <p class="card-text">Stats</p>
+        <div class="card bg-warning mb-3" style="width: 18rem; height: auto; margin: 2%;">
+                <div class="card-header border-warning" style="background-color: orange; text-align: center;">{{product.product_name}}
+                        <p class="card-text" style="background-color: orange; color:black;">{{product.product_id}}</p>
                 </div>
-                <div class="card-footer border-warning">Buttons</div>
+                <div class="card-body text-success" style="background-color: orange;">
+                        <div class="card-body text-success" style="background-color: orange;">
+                                <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Number of opinions
+                                            <span class="badge text-bg-dark rounded-pill"><i class="bi bi-pie-chart-fill"></i> {{product.opinions_count}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Number of opinions with advantages
+                                            <span class="badge text-bg-success rounded-pill"><i class="bi bi-hand-thumbs-up-fill"></i> {{product.pros_count}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Number of opinions with disadvantages
+                                            <span class="badge text-bg-danger rounded-pill"><i class="bi bi-hand-thumbs-down-fill"></i> {{product.cons_count}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Average score
+                                            <span class="badge text-bg-secondary rounded-pill"><i class="bi bi-stars"></i> {{product.average_score|round(2)}}</span>
+                                        </li>
+                                    </ul>
+                        </div>
+                </div>
+                <div class="card-footer text-center" style="background-color: orange; text-align: center;"><a style="color:black" href="{{url_for('product', product_id=product.product_id)}}">Product Page</a></div>
         </div>
         {% endfor %}
+        </div>
 {% endblock %}
