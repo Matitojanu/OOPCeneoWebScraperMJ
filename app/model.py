@@ -36,6 +36,15 @@ class Opinion:
         self.raw_opinion = raw_opinion
         self.opinion = self.transform()
 
+    def transform(self):
+        transformed_opinion = {
+            key: self.extract_content(self.raw_opinion, *value)
+            for key, value in self.selectors.items()
+        }
+        for key, value in self.transformations.items():
+            transformed_opinion[key] = value(transformed_opinion[key])
+        return transformed_opinion  
+
     def extract_content(self, ancestor, selector=None, attribute=None, return_list=False):
         if selector:
             if return_list:
@@ -59,15 +68,6 @@ class Opinion:
         if isinstance(text, list):
             return [GoogleTranslator(source=lang_from, target=lang_to).translate(t) for t in text]
         return GoogleTranslator(source=lang_from, target=lang_to).translate(text)
-
-    def transform(self):
-        transformed_opinion = {
-            key: self.extract_content(self.raw_opinion, *value)
-            for key, value in self.selectors.items()
-        }
-        for key, value in self.transformations.items():
-            transformed_opinion[key] = value(transformed_opinion[key])
-        return transformed_opinion
 
     def get_opinion(self):
         return self.opinion
